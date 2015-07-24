@@ -7,6 +7,9 @@ Each hexbin has a spacing
 
 Add JQuery mouseenter, mouseleave event  
 
+When mouseenter, a bigger hexagon will shown, and a red stroke will be set  
+When mouseleave, return to its original
+
 Run the example by:
 
 
