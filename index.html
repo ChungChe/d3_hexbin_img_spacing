@@ -11,7 +11,7 @@
 </style>
 
 <body>
-  <svg id="mySvg" width="129" height="96">
+  <svg id="mySvg" width="0" height="0">
     <defs id="mdef">
       <pattern id="image" x="-64" y="-48" height="96" width="129" patternUnits="userSpaceOnUse">
         <image x="0" y="0" width="129" height="96" xlink:href="oct.png"></image>
@@ -22,31 +22,26 @@
 <script src="hexbin.js"></script>
 <script>
 
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 900 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-var color = d3.scale.linear()
-    .domain([0, 20])
-    .range(["orange", "orange"])
-    .interpolate(d3.interpolateLab);
-
+var margin = {top: 20, right: 20, bottom: 20, left: 20},
+    width = x - margin.left - margin.right,
+    height = y - margin.top - margin.bottom;
 var hexbin = d3.hexbin()
     .size([width, height])
     .radius(50);
 
 var points = hexbin.centers();
 
-var x = d3.scale.identity()
-    .domain([0, width]);
-
-var y = d3.scale.linear()
-    .domain([0, height])
-    .range([height, 0]);
 
 var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width)
+    .attr("height", height)
 
 svg.append("clipPath")
     .attr("id", "clip")
