@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="/js/jquery.mobile-1.4.5.min.js"></script>
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
 <style>
 
 .hexagon {
@@ -14,13 +18,36 @@
   <svg id="mySvg" width="0" height="0">
     <defs id="mdef">
       <pattern id="image" x="-64" y="-48" height="96" width="129" patternUnits="userSpaceOnUse">
-        <image x="0" y="0" width="129" height="96" xlink:href="/image/oct.png"></image>
+        <image x="0" y="0" width="129" height="96" xlink:href="/image/oct.png" id="myImg1"></image>
       </pattern>
     </defs>
   </svg>
 <script src="/js/d3.v3.min.js"></script>
 <script src="/js/hexbin.js"></script>
 <script>
+
+    var imgWidth = 0;
+    var imgHeight = 0;
+    $(function() {
+        var img = new Image();
+        img.onload = function() {
+            imgWidth = img.width;
+            imgHeight = img.height;
+            console.log("width="+imgWidth+", "+imgHeight);
+        }
+        img.src = '/image/oct.png';
+    
+        $(".hexagon").mouseenter(function() {
+            $(this).attr("d", hexbin.hexagon(52))
+                   .css("stroke", "#f00")
+        });
+
+        $(".hexagon").mouseleave(function() {
+            $(this).attr("d", hexbin.hexagon(45))
+                   .css("stroke", "#000")
+        });
+    
+    });
 
 var w = window,
     d = document,
