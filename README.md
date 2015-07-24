@@ -5,6 +5,8 @@ Fill image inside each hexbin
 
 Each hexbin has a spacing
 
+Add JQuery mouseenter, mouseleave event  
+
 Run the example by:
 
 
